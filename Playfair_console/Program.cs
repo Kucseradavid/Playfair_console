@@ -90,7 +90,7 @@
             }
 
             //téglalapos megoldás
-
+            //nuttin'
 
             return [this.kulcstabla[elsoKodoltIndex[0], elsoKodoltIndex[1]], this.kulcstabla[masodikKodoltIndex[0], masodikKodoltIndex[1]]];
         }
