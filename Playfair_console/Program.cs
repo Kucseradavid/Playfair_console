@@ -64,8 +64,8 @@
             int[] elsoBetuIndex = { this.SorIndex(betupar[0]), this.OszlopIndex(betupar[0]) };
             int[] masodikBetuIndex = { this.SorIndex(betupar[1]), this.OszlopIndex(betupar[1]) };
 
-            int[] elsoKodoltIndex = { 0, 0 };
-            int[] masodikKodoltIndex = { 0, 0 };
+            int[] elsoKodoltIndex = elsoBetuIndex;
+            int[] masodikKodoltIndex = masodikBetuIndex;
             
             /*char[] tempo = { this.kulcstabla[masodikBetuIndexek[0], masodikBetuIndexek[1]], this.kulcstabla[elsoBetuIndexek[0], elsoBetuIndexek[1]] };*/
 
@@ -90,7 +90,16 @@
             }
 
             //téglalapos megoldás
-            //nuttin'
+            else
+            {
+                //elsoKodoltIndex[0] = elsoBetuIndex[0];
+                elsoKodoltIndex[1] = masodikBetuIndex[1];
+                //masodikKodoltIndex[0] = masodikBetuIndex[0];
+                masodikKodoltIndex[1] = elsoBetuIndex[1];
+
+                //Itt valami nem stimmel, az elsoBetuIndex értéket változtat bármi nélkül és emiatt
+                //nem működik megfelelően a 7. feladat c része alapján
+            }
 
             return [this.kulcstabla[elsoKodoltIndex[0], elsoKodoltIndex[1]], this.kulcstabla[masodikKodoltIndex[0], masodikKodoltIndex[1]]];
         }
@@ -121,9 +130,31 @@
             //kod.TestingPurposes();
 
             Console.WriteLine("6. feladat:");
-            Console.WriteLine($"J sor: {kod.SorIndex('J')}, oszlop: {kod.OszlopIndex('J')}.");
+            Console.Write("Kérek egy nagybetűt: ");
+            char karakter = Convert.ToChar(Console.ReadLine());
+            Console.WriteLine($"{karakter} sor: {kod.SorIndex(karakter)}, oszlop: {kod.OszlopIndex(karakter)}");
             Console.WriteLine();
 
+            //char[] EX = { 'E', 'X' };
+            //char[] MR = { 'M', 'R' };
+            //char[] ED = { 'E', 'D' };
+            //char[] EV = { 'E', 'V' };
+            //char[] NX = { 'N', 'X' };
+            //Console.WriteLine($"Tesztelés:");
+            //Console.WriteLine($"soros tolás 1:  EX --> {kod.KodolBetupar(EX)[0]}{kod.KodolBetupar(EX)[1]}");
+            //Console.WriteLine($"soros tolás 2:  MR --> {kod.KodolBetupar(MR)[0]}{kod.KodolBetupar(MR)[1]}");
+            //Console.WriteLine($"oszlop tolás 1: ED --> {kod.KodolBetupar(ED)[0]}{kod.KodolBetupar(ED)[1]}");
+            //Console.WriteLine($"oszlop tolás 2: EV --> {kod.KodolBetupar(EV)[0]}{kod.KodolBetupar(EV)[1]}");
+            //Console.WriteLine($"négyszög tolás: NX --> {kod.KodolBetupar(NX)[0]}{kod.KodolBetupar(NX)[1]}");
+
+            Console.WriteLine("8. feladat:");
+            Console.Write("Kérek egy karakterpárt: ");
+            string bekertSzoveg = Console.ReadLine();
+            char[] nyers = { bekertSzoveg[0], bekertSzoveg[1] };
+            char[] kodolt = kod.KodolBetupar(nyers);
+            Console.WriteLine($"Kódolva: {kodolt[0]}{kodolt[1]}");
+            Console.WriteLine();
+            
             /*char[] test = { 'N', 'X' }; //testing
             Console.WriteLine(test[0] + " " + test[1]);
             char[] ford = kod.KodolBetupar(test);
